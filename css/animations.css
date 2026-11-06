@@ -1,0 +1,684 @@
+/**
+ * animations.css - Romantic Transitions, 3D Cake, Gift Box & Envelope Animations
+ */
+
+/* ===================================================
+   1. FLOATING BALLOONS & PARTICLES
+   =================================================== */
+.floating-balloon {
+    position: fixed;
+    bottom: -120px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    z-index: 1;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: floatUpward linear infinite;
+    user-select: none;
+}
+
+.floating-balloon:hover {
+    transform: scale(1.15) !important;
+}
+
+.floating-balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid rgba(255, 182, 193, 0.9);
+}
+
+.balloon-string {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1.5px;
+    height: 75px;
+    background: linear-gradient(to bottom, rgba(255, 182, 193, 0.8), rgba(255, 255, 255, 0.1));
+    transform-origin: top center;
+    animation: stringWave 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatUpward {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.95;
+    }
+    50% {
+        transform: translateY(-50vh) translateX(var(--drift-x, 25px)) rotate(4deg);
+    }
+    90% {
+        opacity: 0.95;
+    }
+    100% {
+        transform: translateY(-115vh) translateX(calc(var(--drift-x, 25px) * -1)) rotate(-4deg);
+        opacity: 0;
+    }
+}
+
+@keyframes stringWave {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+/* Floating Hearts & Stars Emojis */
+.floating-emoji-heart {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    animation: floatHeartUp 4s ease-out forwards;
+    filter: drop-shadow(0 4px 10px rgba(255, 105, 180, 0.4));
+}
+
+@keyframes floatHeartUp {
+    0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40vh) scale(1.2) rotate(15deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-85vh) scale(1) rotate(-15deg);
+        opacity: 0;
+    }
+}
+
+/* Cursor Sparkle Trail */
+.cursor-heart-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    animation: cursorFade 1s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes cursorFade {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -120%) scale(1.4) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+/* ===================================================
+   2. INTERACTIVE BIRTHDAY CAKE & CANDLE FLAMES
+   =================================================== */
+.cake-container {
+    position: relative;
+    width: 280px;
+    height: 260px;
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+/* Cake Plate */
+.cake-plate {
+    width: 300px;
+    height: 18px;
+    background: linear-gradient(135deg, #ffffff, #f0e6ff, #ffd6e0);
+    border-radius: 50%;
+    box-shadow: 0 14px 30px rgba(161, 140, 209, 0.35), inset 0 2px 4px #ffffff;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cake Tiers */
+.cake-tier {
+    position: relative;
+    border-radius: 16px 16px 8px 8px;
+    box-shadow: inset 0 -6px 10px rgba(0,0,0,0.06), 0 8px 18px rgba(255, 182, 193, 0.3);
+}
+
+.cake-tier-bottom {
+    width: 240px;
+    height: 75px;
+    background: linear-gradient(180deg, #ffcbf2 0%, #f72585 100%);
+    z-index: 2;
+}
+
+.cake-tier-middle {
+    width: 180px;
+    height: 65px;
+    background: linear-gradient(180deg, #e0c3fc 0%, #8e44ad 100%);
+    z-index: 3;
+    margin-bottom: -6px;
+}
+
+.cake-tier-top {
+    width: 125px;
+    height: 55px;
+    background: linear-gradient(180deg, #ffd1dc 0%, #ff758c 100%);
+    z-index: 4;
+    margin-bottom: -6px;
+}
+
+/* Frosting Drips & Cream */
+.frosting-drip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 18px;
+    background: #ffffff;
+    border-radius: 14px 14px 10px 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.frosting-drip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: radial-gradient(circle at 10px 0, #ffffff 10px, transparent 11px);
+    background-size: 20px 20px;
+}
+
+/* Strawberries / Cherries on Top */
+.cake-berries {
+    position: absolute;
+    top: -14px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+}
+
+.berry {
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle at 35% 35%, #ff4b72, #b80028);
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Birthday Candles */
+.candles-row {
+    position: absolute;
+    top: -46px;
+    width: 90px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 6;
+}
+
+.candle {
+    position: relative;
+    width: 12px;
+    height: 38px;
+    background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 5px,
+        #ff758c 5px,
+        #ff758c 10px
+    );
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.candle:nth-child(2) {
+    background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 5px,
+        #a18cd1 5px,
+        #a18cd1 10px
+    );
+    height: 44px;
+    top: -6px;
+}
+
+.candle:nth-child(3) {
+    background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 5px,
+        #ffd700 5px,
+        #ffd700 10px
+    );
+}
+
+/* Candle Wick */
+.wick {
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #333333;
+    border-radius: 1px;
+}
+
+/* Candle Flame */
+.flame {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 24px;
+    background: linear-gradient(to bottom, #ffffff 0%, #fff700 25%, #ff8c00 65%, rgba(255, 69, 0, 0) 100%);
+    border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+    box-shadow: 0 0 16px #ffea00, 0 0 32px #ff7b00;
+    transform-origin: center bottom;
+    animation: flameFlicker 1.2s infinite ease-in-out alternate;
+    transition: all 0.3s ease;
+}
+
+.flame.blown {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.1);
+    box-shadow: none;
+}
+
+/* Smoke after candle is blown */
+.smoke {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    width: 8px;
+    height: 18px;
+    background: rgba(180, 180, 180, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.smoke.active {
+    animation: smokeDrift 1.8s ease-out forwards;
+}
+
+@keyframes flameFlicker {
+    0% {
+        transform: translateX(-50%) scale(1) rotate(-2deg);
+        box-shadow: 0 0 14px #ffea00, 0 0 25px #ff7b00;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.08, 0.95) rotate(3deg);
+        box-shadow: 0 0 18px #ffeb3b, 0 0 35px #ff9800;
+    }
+    100% {
+        transform: translateX(-50%) scale(0.96, 1.05) rotate(-1deg);
+        box-shadow: 0 0 15px #ffe082, 0 0 28px #ff7043;
+    }
+}
+
+@keyframes smokeDrift {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, 0) scale(0.8);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translate(-30%, -30px) scale(1.5) rotate(15deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-70%, -60px) scale(2.2) rotate(-25deg);
+    }
+}
+
+/* ===================================================
+   3. 3D SURPRISE GIFT BOX
+   =================================================== */
+.gift-wrapper {
+    perspective: 1000px;
+    width: 220px;
+    height: 220px;
+    margin: 40px auto 20px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.gift-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gift-wrapper:hover .gift-box:not(.opened) {
+    animation: giftWiggle 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes giftWiggle {
+    0% { transform: rotate(0deg) scale(1.02); }
+    25% { transform: rotate(-4deg) scale(1.04); }
+    75% { transform: rotate(4deg) scale(1.04); }
+    100% { transform: rotate(0deg) scale(1.02); }
+}
+
+/* Box Body */
+.gift-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(145deg, #ff758c 0%, #ff7eb3 50%, #f72585 100%);
+    border-radius: 16px;
+    box-shadow: 0 20px 45px rgba(247, 37, 133, 0.35), inset 0 3px 6px rgba(255,255,255,0.4);
+    overflow: hidden;
+}
+
+/* Vertical Ribbon on Body */
+.gift-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    background: linear-gradient(90deg, #ffd700, #fff3a8, #f5b700);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+/* Horizontal Ribbon on Body */
+.gift-body::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 38px;
+    background: linear-gradient(180deg, #ffd700, #fff3a8, #f5b700);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+/* Box Lid */
+.gift-lid {
+    position: absolute;
+    top: 36px;
+    left: -5%;
+    width: 110%;
+    height: 48px;
+    background: linear-gradient(145deg, #a18cd1 0%, #c3bef0 50%, #7209b7 100%);
+    border-radius: 12px;
+    box-shadow: 0 12px 25px rgba(114, 9, 183, 0.3), inset 0 2px 5px rgba(255,255,255,0.5);
+    z-index: 10;
+    transform-origin: left top;
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Ribbon on Lid */
+.gift-lid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    background: linear-gradient(90deg, #ffd700, #fff3a8, #f5b700);
+}
+
+/* Golden Bow on top of lid */
+.gift-bow {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bow-left, .bow-right {
+    width: 28px;
+    height: 28px;
+    border: 5px solid #ffd700;
+    border-radius: 50% 50% 0 50%;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 243, 168, 0.8));
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.bow-left {
+    transform: rotate(-35deg) skew(-10deg);
+}
+
+.bow-right {
+    transform: scaleX(-1) rotate(-35deg) skew(-10deg);
+    margin-left: -6px;
+}
+
+/* Gift Opened State */
+.gift-box.opened .gift-lid {
+    transform: translateY(-90px) rotateX(45deg) rotateZ(-25deg);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.gift-box.opened .gift-body {
+    transform: scale(0.95);
+    filter: brightness(1.1);
+}
+
+/* Secret Scroll Rising from Gift */
+.gift-secret-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 90%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 15;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gift-box.opened .gift-secret-content {
+    transform: translate(-50%, -140%) scale(1);
+    opacity: 1;
+}
+
+/* ===================================================
+   4. INTERACTIVE LOVE LETTER & ENVELOPE
+   =================================================== */
+.envelope-container {
+    perspective: 1200px;
+    max-width: 520px;
+    margin: 40px auto 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #fbcfe8 0%, #ffd1dc 100%);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(161, 140, 209, 0.3);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.envelope:hover {
+    box-shadow: 0 30px 60px rgba(255, 117, 140, 0.4);
+}
+
+/* Envelope Flap (Top triangle) */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 260px solid transparent;
+    border-right: 260px solid transparent;
+    border-top: 155px solid #f472b6;
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 5;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+}
+
+@media (max-width: 576px) {
+    .envelope-flap {
+        border-left-width: 170px;
+        border-right-width: 170px;
+        border-top-width: 110px;
+    }
+}
+
+/* Wax Seal */
+.wax-seal {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px;
+    height: 52px;
+    background: radial-gradient(circle at 35% 35%, #ff4b72, #990024);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(153, 0, 36, 0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    z-index: 6;
+    transition: all 0.4s ease;
+    border: 2px dashed rgba(255, 215, 0, 0.6);
+}
+
+.wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* The Letter inside */
+.letter-paper {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height: 270px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 25px 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    z-index: 2;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background-image: repeating-linear-gradient(
+        transparent,
+        transparent 26px,
+        rgba(255, 182, 193, 0.25) 27px,
+        rgba(255, 182, 193, 0.25) 28px
+    );
+    overflow: hidden;
+}
+
+/* Envelope Opened State */
+.envelope-container.opened .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-container.opened .wax-seal {
+    opacity: 0;
+    transform: translate(-50%, -80px) scale(0);
+}
+
+.envelope-container.opened .letter-paper {
+    transform: translateY(-80px);
+    z-index: 7;
+    height: auto;
+    min-height: 290px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* ===================================================
+   5. GRAND FINALE 3D BEATING HEART
+   =================================================== */
+.finale-heart-box {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 20px auto 30px;
+}
+
+.beating-heart {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    animation: heartBeat 1.4s ease-in-out infinite;
+    box-shadow: 0 0 35px rgba(255, 65, 108, 0.7);
+}
+
+.beating-heart::before,
+.beating-heart::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.beating-heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.beating-heart::after {
+    top: 0;
+    left: 50px;
+}
+
+@keyframes heartBeat {
+    0% { transform: translate(-50%, -50%) rotate(-45deg) scale(1); }
+    14% { transform: translate(-50%, -50%) rotate(-45deg) scale(1.2); }
+    28% { transform: translate(-50%, -50%) rotate(-45deg) scale(1); }
+    42% { transform: translate(-50%, -50%) rotate(-45deg) scale(1.28); }
+    70% { transform: translate(-50%, -50%) rotate(-45deg) scale(1); }
+}
+
+/* Glow Pulses */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 15px rgba(255, 117, 140, 0.4); }
+    50% { box-shadow: 0 0 35px rgba(255, 117, 140, 0.8), 0 0 60px rgba(161, 140, 209, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(255, 117, 140, 0.4); }
+}
+
+.glow-pulse {
+    animation: pulseGlow 2.5s infinite;
+}
+

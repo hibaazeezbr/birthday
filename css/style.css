@@ -1,0 +1,1153 @@
+/**
+ * style.css - Happy Birthday Appu Wish Website
+ * Theme: Romantic Pastel Pink, Purple & White with Glassmorphic Design
+ */
+
+/* ===================================================
+   1. ROOT VARIABLES & THEME DEFINITIONS
+   =================================================== */
+:root {
+    --primary-pink: #ff758c;
+    --primary-pink-hover: #ff5277;
+    --pastel-pink-soft: #ffd1dc;
+    --pastel-pink-light: #fff0f3;
+    --pastel-pink-subtle: #ffe5ec;
+
+    --primary-purple: #a18cd1;
+    --pastel-purple-soft: #c3bef0;
+    --pastel-purple-light: #f3e8ff;
+    --pastel-lavender: #e0c3fc;
+
+    --gold-accent: #ffd700;
+    --gold-glow: rgba(255, 215, 0, 0.5);
+
+    --text-dark: #2d1e2f;
+    --text-muted: #6b5b6e;
+    --text-romantic: #b83280;
+
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-bg-hover: rgba(255, 255, 255, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --glass-shadow: 0 12px 35px rgba(161, 140, 209, 0.18);
+    --glass-shadow-hover: 0 20px 45px rgba(255, 117, 140, 0.28);
+
+    --font-heading: 'Great Vibes', cursive;
+    --font-serif: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-handwriting: 'Caveat', cursive;
+
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    --radius-pill: 50px;
+}
+
+/* ===================================================
+   2. RESET & BASE STYLES
+   =================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #fff1f7 0%, #ffe0ed 18%, #fbc2eb 50%, #e6dcff 80%, #ffd1dc 100%);
+    background-size: 300% 300%;
+    animation: gradientShift 24s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Canvas Layers */
+#ambientCanvas,
+#fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#fireworksCanvas {
+    z-index: 999;
+}
+
+#balloonContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* Page content wrapper */
+.page-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Typography Helpers */
+.font-romantic {
+    font-family: var(--font-heading);
+}
+
+.font-serif {
+    font-family: var(--font-serif);
+}
+
+.font-handwriting {
+    font-family: var(--font-handwriting);
+}
+
+/* ===================================================
+   3. FLOATING GLASS NAVIGATION
+   =================================================== */
+.navbar-floating {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 10px 30px rgba(161, 140, 209, 0.2);
+    padding: 10px 24px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-floating.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 14px 40px rgba(255, 117, 140, 0.25);
+    top: 12px;
+}
+
+.navbar-brand-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-decoration: none;
+}
+
+.navbar-brand-custom .sparkle-icon {
+    color: var(--gold-accent);
+    animation: rotateSparkle 4s linear infinite;
+}
+
+@keyframes rotateSparkle {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.nav-link-custom {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    color: var(--primary-pink);
+    background: rgba(255, 117, 140, 0.1);
+}
+
+/* Music Mini-Player Widget in Navbar */
+.nav-music-widget {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(255, 209, 220, 0.6), rgba(224, 195, 252, 0.6));
+    padding: 4px 14px 4px 6px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.btn-music-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
+    border: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.4);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-music-circle:hover {
+    transform: scale(1.12);
+}
+
+.btn-music-circle.playing {
+    animation: pulsePlay 1.5s infinite;
+}
+
+@keyframes pulsePlay {
+    0% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 117, 140, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0); }
+}
+
+/* Audio Visualizer Bars */
+.music-visualizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+}
+
+.music-visualizer .bar {
+    width: 3px;
+    height: 4px;
+    background: var(--primary-pink);
+    border-radius: 2px;
+    transition: height 0.2s ease;
+}
+
+.music-visualizer.active .bar:nth-child(1) { animation: soundBar 0.8s ease-in-out infinite alternate; }
+.music-visualizer.active .bar:nth-child(2) { animation: soundBar 1.2s ease-in-out infinite alternate 0.2s; }
+.music-visualizer.active .bar:nth-child(3) { animation: soundBar 0.6s ease-in-out infinite alternate 0.4s; }
+.music-visualizer.active .bar:nth-child(4) { animation: soundBar 1.0s ease-in-out infinite alternate 0.1s; }
+
+@keyframes soundBar {
+    0% { height: 4px; }
+    100% { height: 16px; }
+}
+
+/* ===================================================
+   4. HERO / LANDING SECTION
+   =================================================== */
+.hero-section {
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 70px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    padding: 8px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-pink);
+    box-shadow: 0 6px 18px rgba(255, 117, 140, 0.18);
+    margin-bottom: 24px;
+    animation: bounceBadge 3s ease-in-out infinite;
+}
+
+@keyframes bounceBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* Animated Shimmer Title */
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+    line-height: 1.15;
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 25%, #8e44ad 70%, #ff758c 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleShimmer 6s linear infinite;
+    text-shadow: 0 10px 30px rgba(255, 117, 140, 0.3);
+    margin-bottom: 20px;
+}
+
+@keyframes titleShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 35px;
+    font-weight: 400;
+}
+
+/* Countdown / Celebration Widget */
+.countdown-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    padding: 24px 28px;
+    max-width: 580px;
+    margin: 0 auto 40px;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-pink);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-md);
+    padding: 12px 6px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(161, 140, 209, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.25s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-4px);
+}
+
+.countdown-number {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+    font-weight: 700;
+    color: var(--primary-pink);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.countdown-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hero Action Buttons */
+.hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.btn-romantic-primary {
+    background: linear-gradient(135deg, var(--primary-pink) 0%, #f72585 100%);
+    color: #ffffff;
+    border: none;
+    padding: 14px 34px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 1.05rem;
+    box-shadow: 0 8px 24px rgba(247, 37, 133, 0.35);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-romantic-primary:hover {
+    color: #ffffff;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 30px rgba(247, 37, 133, 0.5);
+}
+
+.btn-romantic-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-dark);
+    border: 1px solid var(--glass-border);
+    padding: 14px 30px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 1.05rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(161, 140, 209, 0.18);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-romantic-secondary:hover {
+    color: var(--primary-pink);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(255, 117, 140, 0.25);
+    background: #ffffff;
+}
+
+/* Scroll Down Prompt */
+.scroll-indicator {
+    margin-top: 45px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.scroll-indicator:hover {
+    color: var(--primary-pink);
+}
+
+.scroll-mouse-icon {
+    width: 22px;
+    height: 36px;
+    border: 2px solid var(--primary-pink);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+}
+
+.scroll-mouse-wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--primary-pink);
+    border-radius: 2px;
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(12px); opacity: 0; }
+}
+
+/* ===================================================
+   5. SECTION HEADINGS & WRAPPERS
+   =================================================== */
+.section-wrapper {
+    padding: 90px 0;
+    position: relative;
+}
+
+.section-tag {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(255, 117, 140, 0.12);
+    color: var(--primary-pink);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.section-title .script-accent {
+    font-family: var(--font-heading);
+    color: var(--primary-pink);
+    font-size: 1.35em;
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Glass Card Global Class */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--glass-shadow-hover);
+}
+
+/* ===================================================
+   6. INTERACTIVE BIRTHDAY CAKE SECTION
+   =================================================== */
+.cake-interactive-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+}
+
+.cake-instructions-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-pink);
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.2);
+    margin-bottom: 35px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.cake-instructions-pill:hover {
+    transform: scale(1.04);
+}
+
+/* Wish Banner Revealed on Blow */
+.wish-banner-reveal {
+    display: none;
+    margin-top: 25px;
+    background: linear-gradient(135deg, rgba(255, 209, 220, 0.9), rgba(224, 195, 252, 0.9));
+    border-radius: var(--radius-md);
+    padding: 24px;
+    border: 2px dashed var(--primary-pink);
+    animation: slideDownFade 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideDownFade {
+    0% { opacity: 0; transform: translateY(-20px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.wish-banner-title {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    color: var(--primary-pink);
+    margin-bottom: 8px;
+}
+
+.wish-banner-text {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+/* ===================================================
+   7. EMOTIONAL WISHES & LOVE NOTES SECTION
+   =================================================== */
+.wish-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 30px 24px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--glass-shadow);
+}
+
+.wish-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(255, 117, 140, 0.25);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.wish-icon-circle {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd1dc 0%, #e0c3fc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--primary-pink);
+    margin-bottom: 20px;
+    box-shadow: 0 6px 15px rgba(255, 117, 140, 0.25);
+}
+
+.wish-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+}
+
+.wish-card-text {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.wish-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+.card-heart-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-heart-btn:hover,
+.card-heart-btn.liked {
+    color: var(--primary-pink);
+}
+
+.card-heart-btn.liked i {
+    color: #ff3366;
+    animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+/* Centerpiece Quote Banner */
+.romantic-quote-banner {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 240, 245, 0.9));
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 40px 30px;
+    text-align: center;
+    margin-top: 45px;
+    box-shadow: var(--glass-shadow);
+    position: relative;
+}
+
+.quote-mark {
+    font-size: 3.5rem;
+    color: rgba(255, 117, 140, 0.25);
+    line-height: 0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.romantic-quote-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.romantic-quote-author {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-pink);
+}
+
+/* ===================================================
+   8. PHOTO GALLERY & MEMORIES
+   =================================================== */
+.gallery-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.btn-gallery-filter {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    padding: 8px 22px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-gallery-filter:hover,
+.btn-gallery-filter.active {
+    background: var(--primary-pink);
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(255, 117, 140, 0.35);
+}
+
+/* Polaroid Card */
+.polaroid-card {
+    background: #ffffff;
+    padding: 14px 14px 22px;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.polaroid-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 117, 140, 0.28);
+    z-index: 10;
+}
+
+/* Decorative Washi Tape on Polaroid Top */
+.washi-tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 80px;
+    height: 24px;
+    background: rgba(255, 209, 220, 0.7);
+    border-left: 2px dashed rgba(255, 255, 255, 0.6);
+    border-right: 2px dashed rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    z-index: 2;
+}
+
+.polaroid-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fdf2f8;
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.polaroid-card:hover .polaroid-img {
+    transform: scale(1.06);
+}
+
+.polaroid-caption {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.polaroid-title {
+    font-family: var(--font-handwriting);
+    font-size: 1.55rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.polaroid-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.polaroid-like-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.polaroid-like-btn.liked {
+    color: #ff3366;
+}
+
+/* Add custom photo upload banner */
+.upload-memory-banner {
+    background: var(--glass-bg);
+    border: 2px dashed var(--pastel-purple-soft);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    text-align: center;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.upload-memory-banner:hover {
+    border-color: var(--primary-pink);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* ===================================================
+   9. SURPRISE GIFT BOX SECTION
+   =================================================== */
+.surprise-interactive-area {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    padding: 50px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.gift-instruction-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary-pink);
+    margin-top: 15px;
+    animation: gentlePulse 2s infinite ease-in-out;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
+}
+
+/* Modal Popup for Hidden Message */
+.hidden-message-modal .modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
+    border: 2px solid var(--pastel-pink-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(255, 117, 140, 0.35);
+    overflow: hidden;
+}
+
+.modal-header-custom {
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
+    color: #ffffff;
+    padding: 20px 24px;
+    border-bottom: none;
+    position: relative;
+}
+
+.modal-body-custom {
+    padding: 30px 28px;
+    text-align: center;
+}
+
+.surprise-heart-badge {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(255, 117, 140, 0.3);
+    margin: -55px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary-pink);
+}
+
+/* ===================================================
+   10. INTERACTIVE LOVE LETTER
+   =================================================== */
+.letter-hint-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    color: var(--primary-pink);
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.15);
+    margin-bottom: 25px;
+}
+
+.letter-heading-text {
+    font-family: var(--font-handwriting);
+    font-size: 2rem;
+    color: var(--primary-pink);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.letter-body-text {
+    font-family: var(--font-handwriting);
+    font-size: 1.35rem;
+    line-height: 1.8;
+    color: #332035;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.letter-sign-off {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--primary-pink);
+    text-align: right;
+}
+
+/* ===================================================
+   11. CELEBRATION PLAYGROUND
+   =================================================== */
+.celebration-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    padding: 35px 25px;
+    text-align: center;
+}
+
+.fun-buttons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.btn-fun-action {
+    background: #ffffff;
+    border: 1px solid var(--glass-border);
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(161, 140, 209, 0.15);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-fun-action:hover {
+    transform: translateY(-4px) scale(1.03);
+    color: var(--primary-pink);
+    box-shadow: 0 10px 25px rgba(255, 117, 140, 0.3);
+}
+
+/* ===================================================
+   12. GRAND FINALE SECTION ("You Are Special! ❤️")
+   =================================================== */
+.finale-section {
+    padding: 110px 0 90px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 209, 220, 0.4) 0%, transparent 70%);
+}
+
+.finale-glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 40px;
+    box-shadow: 0 25px 65px rgba(255, 117, 140, 0.3);
+    padding: 60px 40px;
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.finale-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3.4rem, 8vw, 6.2rem);
+    color: #ff3366;
+    margin: 20px 0 15px;
+    text-shadow: 0 6px 25px rgba(255, 51, 102, 0.35);
+}
+
+.finale-sub {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+}
+
+.finale-paragraph {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 0 auto 35px;
+}
+
+/* Final Action Buttons */
+.finale-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* ===================================================
+   13. FOOTER
+   =================================================== */
+.romantic-footer {
+    padding: 40px 0 30px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.footer-heart {
+    color: #ff3366;
+    display: inline-block;
+    animation: heartBeat 1.4s infinite;
+}
+
+/* Floating Action Floating Button (Bottom Right) */
+.floating-magic-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 8px 25px rgba(255, 117, 140, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 998;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-magic-button:hover {
+    transform: scale(1.15) rotate(15deg);
+}
+
+/* ===================================================
+   14. RESPONSIVE DESIGN ADJUSTMENTS
+   =================================================== */
+@media (max-width: 991px) {
+    .navbar-floating {
+        padding: 8px 16px;
+    }
+    .hero-section {
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-wrapper {
+        padding: 60px 0;
+    }
+    .countdown-grid {
+        gap: 8px;
+    }
+    .countdown-item {
+        padding: 10px 4px;
+    }
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    .cake-container {
+        transform: scale(0.9);
+        margin-bottom: 10px;
+    }
+    .polaroid-img-wrapper {
+        height: 200px;
+    }
+    .finale-glass-card {
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .countdown-box {
+        padding: 18px 14px;
+    }
+    .cake-container {
+        transform: scale(0.8);
+    }
+    .envelope {
+        height: 250px;
+    }
+    .envelope-container.opened .letter-paper {
+        transform: translateY(-50px);
+    }
+}

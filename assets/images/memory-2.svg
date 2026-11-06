@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9a9e" />
+      <stop offset="50%" stop-color="#fecfef" />
+      <stop offset="100%" stop-color="#a18cd1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(0,0,0,0.15)"/>
+    </filter>
+  </defs>
+  <rect width="600" height="500" fill="url(#bgGrad2)" />
+
+  <!-- Botanical floral bouquet center -->
+  <g transform="translate(300, 230)" filter="url(#shadow)">
+    <!-- Pastel Peonies & Roses -->
+    <circle cx="0" cy="0" r="75" fill="#ffffff" opacity="0.3"/>
+    <circle cx="-35" cy="-20" r="45" fill="#ff758c" opacity="0.8"/>
+    <circle cx="35" cy="-20" r="45" fill="#f472b6" opacity="0.8"/>
+    <circle cx="0" cy="25" r="50" fill="#fda4af" opacity="0.85"/>
+    <circle cx="0" cy="15" r="30" fill="#fff1f2" opacity="0.9"/>
+    
+    <!-- Leaves -->
+    <path d="M -70,-30 Q -95,-60 -70,-80 Q -45,-60 -70,-30 Z" fill="#bbf7d0" opacity="0.8"/>
+    <path d="M 70,-30 Q 95,-60 70,-80 Q 45,-60 70,-30 Z" fill="#bbf7d0" opacity="0.8"/>
+    <path d="M 0,-70 Q 20,-100 0,-115 Q -20,-100 0,-70 Z" fill="#86efac" opacity="0.8"/>
+
+    <text x="0" y="24" font-size="40" text-anchor="middle">💐</text>
+  </g>
+
+  <!-- Sparkles -->
+  <text x="140" y="140" font-size="30">✨</text>
+  <text x="460" y="160" font-size="32">🌸</text>
+  <text x="180" y="360" font-size="28">💕</text>
+  <text x="420" y="340" font-size="28">✨</text>
+
+  <text x="300" y="390" font-family="'Playfair Display', serif" font-weight="bold" font-size="28" fill="#ffffff" text-anchor="middle" letter-spacing="3">SWEETEST BLOOMS</text>
+  <text x="300" y="425" font-family="'Poppins', sans-serif" font-size="16" fill="rgba(255,255,255,0.9)" text-anchor="middle">A heart as soft as pastel petals</text>
+</svg>
+

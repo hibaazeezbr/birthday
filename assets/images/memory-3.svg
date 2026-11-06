@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c3fc" />
+      <stop offset="50%" stop-color="#ffd1dc" />
+      <stop offset="100%" stop-color="#ffecd2" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="500" fill="url(#bgGrad3)" />
+
+  <!-- Cupcake / Birthday Treat -->
+  <g transform="translate(300, 210)">
+    <!-- Base cup -->
+    <path d="M -50,60 L 50,60 L 35,120 L -35,120 Z" fill="#f43f5e" opacity="0.8" />
+    <path d="M -50,60 L 50,60 L 35,120 L -35,120 Z" fill="none" stroke="#ffffff" stroke-width="2" />
+    <!-- Cream swirls -->
+    <ellipse cx="0" cy="50" rx="60" ry="25" fill="#ffffff" />
+    <ellipse cx="0" cy="25" rx="45" ry="22" fill="#ffd1dc" />
+    <ellipse cx="0" cy="0" rx="30" ry="18" fill="#ffffff" />
+    <!-- Strawberry cherry on top -->
+    <circle cx="0" cy="-20" r="14" fill="#ff1744" />
+    <path d="M 0,-34 Q 8,-44 14,-38" stroke="#4ade80" stroke-width="3" fill="none" />
+    
+    <!-- Candle -->
+    <rect x="-4" y="-60" width="8" height="26" fill="#ffd700" rx="2" />
+    <ellipse cx="0" cy="-68" rx="6" ry="10" fill="#ff9100" />
+    <ellipse cx="0" cy="-68" rx="3" ry="6" fill="#ffff00" />
+  </g>
+
+  <!-- Floating sweet emojis -->
+  <text x="120" y="220" font-size="40">🧁</text>
+  <text x="440" y="200" font-size="45">🎂</text>
+  <text x="180" y="120" font-size="30">✨</text>
+  <text x="420" y="320" font-size="35">🍓</text>
+
+  <text x="300" y="390" font-family="'Playfair Display', serif" font-weight="bold" font-size="28" fill="#4a154b" text-anchor="middle" letter-spacing="3">SWEETEST CELEBRATION</text>
+  <text x="300" y="425" font-family="'Poppins', sans-serif" font-size="16" fill="#6a3d72" text-anchor="middle">Every memory with you is a treat</text>
+</svg>
+

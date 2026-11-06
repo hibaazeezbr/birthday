@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Appu! 🎂❤️</title>
+
+    <!-- Meta Description for Social Sharing -->
+    <meta name="description" content="A joyful, magical birthday celebration made with love for Appu, featuring a cake, music, memories, and surprises.">
+    <meta name="theme-color" content="#ffd1dc">
+
+    <!-- Google Fonts: Great Vibes (Calligraphy), Playfair Display (Serif Elegance), Poppins (Modern Body), Caveat (Handwritten Love Letter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.2 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Custom CSS Styles -->
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+</head>
+<body>
+
+    <!-- ===================================================
+         BACKGROUND CANVASES & BALLOONS
+         =================================================== -->
+    <!-- Floating Ambient Hearts & Twinkling Stars Canvas -->
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- Full-screen Fireworks Canvas -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Floating Interactive Pastel Balloons Container -->
+    <div id="balloonContainer"></div>
+
+    <!-- ===================================================
+         FLOATING GLASS NAVIGATION BAR
+         =================================================== -->
+    <nav class="navbar-floating d-flex justify-content-between align-items-center">
+        <!-- Brand Logo / Greeting -->
+        <a href="#home" class="navbar-brand-custom">
+            <i class="fas fa-sparkles sparkle-icon"></i>
+            <span>Appu's Birthday</span>
+        </a>
+
+        <!-- Quick Jump Links (Desktop) -->
+        <div class="d-none d-lg-flex align-items-center gap-1">
+            <a href="#home" class="nav-link-custom">Home</a>
+            <a href="#cake" class="nav-link-custom">Cake &amp; Wish</a>
+            <a href="#wishes" class="nav-link-custom">Wishes</a>
+            <a href="#gallery" class="nav-link-custom">Memories</a>
+            <a href="#surprise" class="nav-link-custom">Surprise</a>
+            <a href="#letter" class="nav-link-custom">Letter</a>
+            <a href="#finale" class="nav-link-custom">Special ❤️</a>
+        </div>
+
+        <!-- Music Controller Mini Player -->
+        <div class="nav-music-widget">
+            <button id="musicToggleBtn" class="btn-music-circle" aria-label="Play/Pause Birthday Music" title="Toggle Birthday Music">
+                <i class="fas fa-music"></i>
+            </button>
+            <div class="d-none d-sm-block text-start me-1">
+                <div id="musicStatusText" class="small fw-semibold text-truncate" style="max-width: 155px; font-size: 0.78rem;">
+                    Tap to play Birthday Music 🎶
+                </div>
+                <div id="musicVisualizer" class="music-visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================================================
+         MAIN CONTENT WRAPPER
+         =================================================== -->
+    <main class="page-content">
+
+        <!-- ===================================================
+             1. HERO / LANDING SECTION
+             =================================================== -->
+        <section id="home" class="hero-section text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-9">
+
+                        <!-- Romantic Greeting Pill -->
+                        <div class="hero-pill-badge">
+                            <i class="fas fa-heart text-danger"></i>
+                            <span>A Special Magical Day for Someone Truly Wonderful</span>
+                            <i class="fas fa-sparkles text-warning"></i>
+                        </div>
+
+                        <!-- Main Birthday Heading -->
+                        <h1 class="hero-title">Happy Birthday Appu! 🎂❤️</h1>
+
+                        <!-- Heartfelt Subtitle -->
+                        <p class="hero-subtitle">
+                            Today the world celebrates the most precious, radiant, and gentle soul. 
+                            May your day overflow with unending laughter, warm embraces, sweet melodies, and every wish your heart holds dear.
+                        </p>
+
+                        <!-- Live Birthday Celebration Countdown Card -->
+                        <div class="countdown-box">
+                            <div class="countdown-label">
+                                <i class="fas fa-calendar-star"></i>
+                                <span id="countdownLabelText">Celebrating Appu's Special Day</span>
+                                <i class="fas fa-sparkles"></i>
+                            </div>
+                            <div class="countdown-grid">
+                                <div class="countdown-item">
+                                    <div id="countDays" class="countdown-number">00</div>
+                                    <div class="countdown-text">Days</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div id="countHours" class="countdown-number">00</div>
+                                    <div class="countdown-text">Hours</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div id="countMinutes" class="countdown-number">00</div>
+                                    <div class="countdown-text">Mins</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div id="countSeconds" class="countdown-number">00</div>
+                                    <div class="countdown-text">Secs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Action Buttons -->
+                        <div class="hero-cta-group">
+                            <a href="#cake" class="btn-romantic-primary">
+                                <i class="fas fa-birthday-cake"></i>
+                                <span>Blow the Candles</span>
+                            </a>
+                            <a href="#surprise" class="btn-romantic-secondary">
+                                <i class="fas fa-gift"></i>
+                                <span>Unwrap Surprise</span>
+                            </a>
+                            <a href="#letter" class="btn-romantic-secondary">
+                                <i class="fas fa-envelope-open-text"></i>
+                                <span>Read Birthday Note</span>
+                            </a>
+                        </div>
+
+                        <!-- Scroll Down Mouse Prompt -->
+                        <div>
+                            <a href="#cake" class="scroll-indicator">
+                                <div class="scroll-mouse-icon">
+                                    <div class="scroll-mouse-wheel"></div>
+                                </div>
+                                <span>Scroll to explore the magic</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+             2. INTERACTIVE BIRTHDAY CAKE SECTION
+             =================================================== -->
+        <section id="cake" class="section-wrapper">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-tag"><i class="fas fa-wand-magic-sparkles me-1"></i> Make A Wish</span>
+                    <h2 class="section-title">A Sweet Cake for <span class="script-accent">Appu</span></h2>
+                    <p class="section-subtitle">A birthday isn't complete without a wish! Tap the candles to blow them out.</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+                        <div class="cake-interactive-box">
+
+                            <!-- Interactive Click Instruction Pill -->
+                            <div id="blowCandlesBtn" class="cake-instructions-pill">
+                                <i class="fas fa-wind text-primary"></i>
+                                <span>Click anywhere on the cake to blow out candles! 🕯️💨</span>
+                            </div>
+
+                            <!-- 3D Layered Birthday Cake Container -->
+                            <div id="cakeContainer" class="cake-container" title="Click to blow out candles!">
+                                
+                                <!-- Candles with flickering flames -->
+                                <div class="candles-row">
+                                    <!-- Candle 1 -->
+                                    <div class="candle">
+                                        <div class="wick"></div>
+                                        <div class="flame"></div>
+                                        <div class="smoke"></div>
+                                    </div>
+                                    <!-- Candle 2 (Center) -->
+                                    <div class="candle">
+                                        <div class="wick"></div>
+                                        <div class="flame"></div>
+                                        <div class="smoke"></div>
+                                    </div>
+                                    <!-- Candle 3 -->
+                                    <div class="candle">
+                                        <div class="wick"></div>
+                                        <div class="flame"></div>
+                                        <div class="smoke"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Top Tier (Pink Berry Cream) -->
+                                <div class="cake-tier cake-tier-top">
+                                    <div class="cake-berries">
+                                        <div class="berry"></div>
+                                        <div class="berry"></div>
+                                        <div class="berry"></div>
+                                    </div>
+                                    <div class="frosting-drip"></div>
+                                </div>
+
+                                <!-- Middle Tier (Lavender Velvet) -->
+                                <div class="cake-tier cake-tier-middle">
+                                    <div class="frosting-drip"></div>
+                                </div>
+
+                                <!-- Bottom Tier (Rose Pastry) -->
+                                <div class="cake-tier cake-tier-bottom">
+                                    <div class="frosting-drip"></div>
+                                </div>
+
+                                <!-- Decorative Plate -->
+                                <div class="cake-plate"></div>
+                            </div>
+
+                            <!-- Revealed Wish Message Banner after blowing -->
+                            <div id="cakeWishBanner" class="wish-banner-reveal">
+                                <div class="wish-banner-title">✨ Wish Granted! ✨</div>
+                                <p class="wish-banner-text">
+                                    "May all your quiet hopes, your sweetest dreams, and your deepest wishes blossom into beautiful realities this year, dear Appu! 💖"
+                                </p>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <button id="relightCandlesBtn" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+                                        <i class="fas fa-fire me-1"></i> Relight Candles
+                                    </button>
+                                    <button class="btn btn-sm btn-romantic-primary px-3" onclick="BirthdayCelebration.fireGrandExplosion()">
+                                        <i class="fas fa-sparkles me-1"></i> More Confetti!
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+             3. EMOTIONAL BIRTHDAY MESSAGES & WISHES
+             =================================================== -->
+        <section id="wishes" class="section-wrapper">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-tag"><i class="fas fa-heart me-1"></i> From The Heart</span>
+                    <h2 class="section-title">Words of Love &amp; <span class="script-accent">Blessings</span></h2>
+                    <p class="section-subtitle">Every year you grow more wonderful. Here are little reminders of how deeply you are loved.</p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Wish Card 1 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="wish-card">
+                            <div class="wish-icon-circle">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3 class="wish-card-title">Your Radiant Smile</h3>
+                            <p class="wish-card-text">
+                                Your smile has a rare magic that lights up any room instantly. Never stop smiling, Appu, because your joy creates ripples of happiness everywhere.
+                            </p>
+                            <div class="wish-card-footer">
+                                <span class="small text-muted"><i class="fas fa-sparkles text-warning me-1"></i> Pure Sunshine</span>
+                                <button class="card-heart-btn" title="Send a heart">
+                                    <i class="far fa-heart"></i>
+                                    <span>Love</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wish Card 2 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="wish-card">
+                            <div class="wish-icon-circle">
+                                <i class="fas fa-dove"></i>
+                            </div>
+                            <h3 class="wish-card-title">Your Gentle Heart</h3>
+                            <p class="wish-card-text">
+                                Your kindness, understanding, and empathy are gifts to everyone who crosses your path. The warmth you give to others makes you truly one in a million.
+                            </p>
+                            <div class="wish-card-footer">
+                                <span class="small text-muted"><i class="fas fa-hand-holding-heart text-danger me-1"></i> Pure Grace</span>
+                                <button class="card-heart-btn" title="Send a heart">
+                                    <i class="far fa-heart"></i>
+                                    <span>Love</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wish Card 3 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="wish-card">
+                            <div class="wish-icon-circle">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="wish-card-title">Limitless Dreams</h3>
+                            <p class="wish-card-text">
+                                May this new chapter bring you the courage to chase every ambition and the quiet peace of knowing you are capable of extraordinary things.
+                            </p>
+                            <div class="wish-card-footer">
+                                <span class="small text-muted"><i class="fas fa-compass text-info me-1"></i> Golden Future</span>
+                                <button class="card-heart-btn" title="Send a heart">
+                                    <i class="far fa-heart"></i>
+                                    <span>Love</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wish Card 4 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="wish-card">
+                            <div class="wish-icon-circle">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h3 class="wish-card-title">Endless Joy</h3>
+                            <p class="wish-card-text">
+                                You deserve a lifetime filled with sweet surprises, laughter that makes your stomach hurt, loyal bonds, and unconditional peace.
+                            </p>
+                            <div class="wish-card-footer">
+                                <span class="small text-muted"><i class="fas fa-gem text-primary me-1"></i> Cherished Always</span>
+                                <button class="card-heart-btn" title="Send a heart">
+                                    <i class="far fa-heart"></i>
+                                    <span>Love</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emotional Romantic Quote Centerpiece -->
+                <div class="romantic-quote-banner">
+                    <span class="quote-mark">“</span>
+                    <p class="romantic-quote-text">
+                        "If I could give you one gift for your birthday, it would be the ability to see yourself through the eyes of those who love you. Only then would you realize how truly irreplaceable, magical, and enchanting you are."
+                    </p>
+                    <div class="romantic-quote-author">~ Forever wishing you the best, Appu 💖</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================================
+             4. MEMORIES & PHOTO GALLERY
+             =================================================== -->
+        <section id="gallery" class="section-wrapper">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-tag"><i class="fas fa-camera-retro me-1"></i> Sweet Reminiscence</span>
+                    <h2 class="section-title">Precious <span class="script-accent">Memories</span></h2>
+                    <p class="section-subtitle">A collection of beautiful moments, laughter, and fairy-tale snapshots.</p>
+                </div>
+
+                <!-- Gallery Category Filters -->
+                <div class="gallery-controls">
+                    <button class="btn-gallery-filter active" data-filter="all">All Memories</button>
+                    <button class="btn-gallery-filter" data-filter="smiles">Sweet Smiles</button>
+                    <button class="btn-gallery-filter" data-filter="celebration">Celebrations</button>
+                    <button class="btn-gallery-filter" data-filter="moments">Special Moments</button>
+                </div>
+
+                <!-- Polaroid Photo Grid -->
+                <div id="galleryRow" class="row g-4 justify-content-center">
+
+                    <!-- Polaroid 1 -->
+                    <div class="col-lg-4 col-md-6 gallery-col" data-category="moments">
+                        <div class="polaroid-card">
+                            <div class="washi-tape"></div>
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/images/memory-1.svg" alt="Fairy Tale Moments" class="polaroid-img">
+                            </div>
+                            <div class="polaroid-caption">
+                                <div class="polaroid-title">Fairy Tale Moments ✨</div>
+                                <div class="polaroid-date">Illuminated by your bright smile</div>
+                            </div>
+                            <button class="polaroid-like-btn" title="Like memory">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 2 -->
+                    <div class="col-lg-4 col-md-6 gallery-col" data-category="smiles">
+                        <div class="polaroid-card">
+                            <div class="washi-tape"></div>
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/images/memory-2.svg" alt="Sweetest Blooms" class="polaroid-img">
+                            </div>
+                            <div class="polaroid-caption">
+                                <div class="polaroid-title">Sweetest Blooms 🌸</div>
+                                <div class="polaroid-date">Gentle and full of grace</div>
+                            </div>
+                            <button class="polaroid-like-btn" title="Like memory">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 3 -->
+                    <div class="col-lg-4 col-md-6 gallery-col" data-category="celebration">
+                        <div class="polaroid-card">
+                            <div class="washi-tape"></div>
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/images/memory-3.svg" alt="Sweetest Celebration" class="polaroid-img">
+                            </div>
+                            <div class="polaroid-caption">
+                                <div class="polaroid-title">Sweetest Treats 🧁</div>
+                                <div class="polaroid-date">Celebrating another wonderful year</div>
+                            </div>
+                            <button class="polaroid-like-btn" title="Like memory">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 4 -->
+                    <div class="col-lg-4 col-md-6 gallery-col" data-category="moments">
+                        <div class="polaroid-card">
+                            <div class="washi-tape"></div>
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/images/memory-4.svg" alt="Starry Night Wishes" class="polaroid-img">
+                            </div>
+                            <div class="polaroid-caption">
+                                <div class="polaroid-title">Starry Wishes 🌙</div>
+                                <div class="polaroid-date">Under the moonlit night</div>
+                            </div>
+                            <button class="polaroid-like-btn" title="Like memory">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 5 -->
+                    <div class="col-lg-4 col-md-6 gallery-col" data-category="celebration">
+                        <div class="polaroid-card">
+                            <div class="washi-tape"></div>
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/images/memory-5.svg" alt="Floating Dreams" class="polaroid-img">
+                            </div>
+                            <div class="polaroid-caption">
+                                <div class="polaroid-title">Floating Dreams 🎈</div>
+                                <div class="polaroid-date">Higher than the pastel clouds</div>
+                            </div>
+                            <button class="polaroid-like-btn" title="Like memory">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 6 -->
+                    <div class="col-lg-4 col-md-6 gallery-col" data-category="smiles">
+                        <div class="polaroid-card">
+                            <div class="washi-tape"></div>
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/images/memory-6.svg" alt="Cozy Chats & Laughter" class="polaroid-img">
+                            </div>
+                            <div class="polaroid-caption">
+                                <div class="polaroid-title">Warm &amp; Cherished ☕</div>
+                                <div class="polaroid-date">Laughter that never fades</div>
+                            </div>
+                            <button class="polaroid-like-btn" title="Like memory">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Custom Photo Upload Banner -->
+                <div class="upload-memory-banner">
+                    <h5 class="fw-bold mb-2 text-dark">
+                        <i class="fas fa-images text-danger me-2"></i> Add your favorite photos of Appu
+                    </h5>
+                    <p class="text-muted small mb-3">
+                        The illustrated memories are placeholders. Choose personal photos to add them to this gallery.
+                    </p>
+                    <label for="userPhotoInput" class="btn btn-sm btn-romantic-primary">
+                        <i class="fas fa-cloud-arrow-up me-1"></i> Choose Photos to Add
+                    </label>
+                    <input type="file" id="userPhotoInput" accept="image/*" multiple style="display: none;">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================================
+             5. SURPRISE GIFT BOX SECTION
+             =================================================== -->
+        <section id="surprise" class="section-wrapper">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-tag"><i class="fas fa-gift me-1"></i> A Secret Package</span>
+                    <h2 class="section-title">A Special Surprise For <span class="script-accent">Appu</span></h2>
+                    <p class="section-subtitle">Wrapped with velvet pastel ribbons and sealed with affection. Tap the box to unlock your secret surprise!</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 text-center">
+                        <div class="surprise-interactive-area">
+
+                            <!-- 3D Interactive Surprise Gift Box -->
+                            <div class="gift-wrapper" id="surpriseGiftBox" role="button" tabindex="0" aria-label="Open Appu's birthday gift" title="Tap to open the gift!">
+                                <div class="gift-box">
+                                    <!-- Lid with golden bow -->
+                                    <div class="gift-lid">
+                                        <div class="gift-bow">
+                                            <div class="bow-left"></div>
+                                            <div class="bow-right"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Body with satin ribbons -->
+                                    <div class="gift-body"></div>
+                                </div>
+                            </div>
+
+                            <div class="gift-instruction-text">
+                                <i class="fas fa-hand-pointer me-1"></i> Tap the Gift Box to Unwrap! 🎁
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+             6. INTERACTIVE LOVE LETTER & ENVELOPE
+             =================================================== -->
+        <section id="letter" class="section-wrapper">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-tag"><i class="fas fa-envelope me-1"></i> Sealed With Affection</span>
+                    <h2 class="section-title">A Birthday Letter to <span class="script-accent">Appu</span></h2>
+                    <p class="section-subtitle">Open this little note to read a message from the heart.</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+
+                        <div class="letter-hint-tag">
+                            <i class="fas fa-stamp text-danger"></i>
+                            <span>Tap the golden "A" wax seal below to open</span>
+                        </div>
+
+                        <!-- 3D Animated Envelope Container -->
+                        <div id="envelopeContainer" class="envelope-container" title="Click to open or fold letter">
+                            <div class="envelope">
+                                <!-- Top triangular flap -->
+                                <div class="envelope-flap"></div>
+                                
+                                <!-- Wax Seal with initial 'A' -->
+                                <div id="waxSeal" class="wax-seal">
+                                    <span>A</span>
+                                </div>
+
+                                <!-- The Parchment Letter -->
+                                <div class="letter-paper">
+                                    <div class="letter-heading-text">Dear Appu,</div>
+                                    <div class="letter-body-text">
+                                        You are not just my sister, you are my happiness, my best friend and my forever support. May your life always be filled with love, happiness and success. Love you so much, Appu! ❤️
+                                    </div>
+                                    <div class="letter-sign-off">With all my love, always ✨</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+             7. CELEBRATION PLAYGROUND CONTROLS
+             =================================================== -->
+        <section class="section-wrapper pt-0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center">
+                        <div class="celebration-box">
+                            <h4 class="fw-bold mb-2">🎉 Party &amp; Celebration Playground</h4>
+                            <p class="text-muted small mb-3">Send Appu bursts of joy, fireworks, balloon showers, and hearts anytime you wish!</p>
+                            
+                            <div class="fun-buttons-grid">
+                                <button id="btnCelebrationConfetti" class="btn-fun-action">
+                                    <span>🎊</span>
+                                    <span>Confetti Cannon</span>
+                                </button>
+                                <button id="btnCelebrationFireworks" class="btn-fun-action">
+                                    <span>🎆</span>
+                                    <span>Sky Fireworks</span>
+                                </button>
+                                <button id="btnCelebrationBalloons" class="btn-fun-action">
+                                    <span>🎈</span>
+                                    <span>Release Balloons</span>
+                                </button>
+                                <button id="btnCelebrationHearts" class="btn-fun-action">
+                                    <span>💖</span>
+                                    <span>Shower Hearts</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+             8. GRAND FINALE SECTION: "You Are Special! ❤️"
+             =================================================== -->
+        <section id="finale" class="finale-section">
+            <div class="container">
+                <div class="finale-glass-card">
+                    
+                    <!-- 3D Beating Heart -->
+                    <div class="finale-heart-box">
+                        <div class="beating-heart"></div>
+                    </div>
+
+                    <!-- Grand Climax Title -->
+                    <h2 class="finale-title">You are Special! ❤️</h2>
+                    
+                    <h3 class="finale-sub">Happy Birthday, Appu! 🎂🌸</h3>
+
+                    <p class="finale-paragraph">
+                        In a world of eight billion souls, there is nobody quite like you. 
+                        Your gentleness, your glowing spirit, and your genuine heart make everything around you brighter. 
+                        Never forget how truly valued, appreciated, and cherished you are today and every single day after.
+                    </p>
+
+                    <!-- Finale Buttons -->
+                    <div class="finale-actions">
+                        <button id="btnShareWish" class="btn-romantic-primary">
+                            <i class="fas fa-share-nodes"></i>
+                            <span>Copy Birthday Wish</span>
+                        </button>
+                        <button id="btnReplayMagic" class="btn-romantic-secondary">
+                            <i class="fas fa-rotate-right"></i>
+                            <span>Replay The Magic</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================
+         FOOTER
+         =================================================== -->
+    <footer class="romantic-footer">
+        <div class="container">
+            <p class="mb-1">
+                Crafted with endless <span class="footer-heart">❤️</span> and warm wishes for <strong>Appu's Birthday</strong>
+            </p>
+            <p class="small text-muted mb-0">
+                May your year be as extraordinary and unforgettable as you are ✨
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating Magic Button (Bottom Right) -->
+    <button id="floatingMusicBtn" class="floating-magic-button" title="Play / Pause Birthday Music" aria-label="Toggle Music">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- ===================================================
+         MODALS & TOAST NOTIFICATIONS
+         =================================================== -->
+
+    <!-- Hidden Surprise Gift Message Modal -->
+    <div class="modal fade hidden-message-modal" id="hiddenMessageModal" tabindex="-1" aria-labelledby="hiddenMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header-custom text-center">
+                    <h5 class="modal-title w-100 fw-bold" id="hiddenMessageModalLabel">
+                        ✨ A Hidden Message For Appu ✨
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 top-50 translate-middle-y me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body-custom">
+                    <div class="surprise-heart-badge">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h4 class="font-serif fw-bold text-dark mb-3">To My Wonderful Sister 💖</h4>
+                    <p class="text-muted mb-3" style="font-size: 1.05rem; line-height: 1.8;">
+                        "If smiles could be bottled into jars of stardust, yours would illuminate the entire galaxy. 
+                        Appu, you deserve endless happiness, true peace of mind, unshakeable confidence, and all the sweet moments you've ever dreamt of.
+                        Happy Birthday to someone who truly deserves the world!"
+                    </p>
+                    <div class="p-3 mb-4 rounded-3" style="background: rgba(255, 209, 220, 0.4); border: 1px dashed var(--primary-pink);">
+                        <span class="fw-bold text-danger">🎁 Birthday Privilege:</span>
+                        <div class="small text-dark mt-1">Unlimited wishes, endless cake, and all the love in the universe!</div>
+                    </div>
+                    <button type="button" class="btn-romantic-primary px-4 py-2" data-bs-dismiss="modal" onclick="BirthdayCelebration.fireGrandExplosion()">
+                        <i class="fas fa-heart me-1"></i> Receive With A Smile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Polaroid Lightbox Modal -->
+    <div class="modal fade" id="photoLightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 bg-transparent">
+                <div class="modal-body text-center p-0 position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3 bg-dark p-2 rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="p-3 bg-white rounded-4 shadow-lg d-inline-block" style="max-width: 90%;">
+                        <img id="lightboxModalImg" src="" alt="Enlarged Memory" class="img-fluid rounded-3 mb-3" style="max-height: 70vh; object-fit: contain;">
+                        <div id="lightboxModalCaption" class="text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification for Copied Birthday Wish -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 10000;">
+        <div id="shareWishToast" class="toast align-items-center text-bg-dark border-0 shadow-lg rounded-pill px-2" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <span class="fs-5">💖</span>
+                    <span>Sweet Birthday Wish copied to your clipboard! Ready to share with Appu!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         JAVASCRIPT SCRIPTS
+         =================================================== -->
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <!-- Custom Audio Synthesizer & Sound FX -->
+    <script src="js/audio.js"></script>
+
+    <!-- Particle Systems (Fireworks, Ambient Particles, Floating Balloons) -->
+    <script src="js/confetti-fireworks.js"></script>
+
+    <!-- Main Application Scripts -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
